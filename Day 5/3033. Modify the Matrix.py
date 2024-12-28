@@ -1,22 +1,18 @@
-
-def solution():
-    matrix = [[1,2,-1],[4,-1,6],[7,8,9]]
-    result = []
-    for i in range(len(matrix[0])):
-        temp = []
-        for j in range(len(matrix)):
-            temp.append(matrix[j][i])
-        result.append(temp)
-    for i in range(len(result)):
-        for j in range(len(result[0])):
-            if result[i][j] == -1:
-                result[i][j] == max(result[i])
-    result_final = []
-    for i in range(len(result[0])):
-        temp = []
-        for j in range(len(result)):
-            temp.append(result[j][i])
-        result_final.append(temp)
-    return result_final
-
-print(solution())
+class Solution(object):
+    def modifiedMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        max_elements = []
+        for i in range(len(matrix[0])):
+            max_element = 0
+            for j in range(len(matrix)):
+                max_element = max(matrix[j][i], max_element)
+            max_elements.append(max_element)
+        for i in range(len(matrix[0])):
+            for j in range(len(matrix)):
+                if matrix[j][i] == -1:
+                    matrix[j][i] = max_elements[i]
+        return matrix
+        
